@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday, My Love 💖</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Dancing+Script:wght@600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ═══ PARTICLE / VIDEO-LIKE BG CANVAS ═══ -->
+<canvas id="bgCanvas"></canvas>
+
+<!-- ═══ OVERLAY GRAIN ═══ -->
+<div class="grain-overlay"></div>
+
+<!-- ═══ CURSOR TRAIL ═══ -->
+<canvas id="trailCanvas"></canvas>
+
+<!-- ═══ CONFETTI ═══ -->
+<canvas id="confettiCanvas"></canvas>
+
+<!-- ═══ FLOATING PETALS ═══ -->
+<div id="petals"></div>
+
+<!-- ═══ MUSIC ═══ -->
+<button class="music-fab" id="musicFab">🎵</button>
+<audio id="bgAudio" loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+
+<!-- ═══ NAV ═══ -->
+<nav class="sidenav">
+  <button class="dot active" data-page="0" onclick="goTo(0)"></button>
+  <button class="dot" data-page="1" onclick="goTo(1)"></button>
+  <button class="dot" data-page="2" onclick="goTo(2)"></button>
+  <button class="dot" data-page="3" onclick="goTo(3)"></button>
+</nav>
+
+<!-- ═══════════════════════════════════════ -->
+<!--          PAGE 0 — OPENING             -->
+<!-- ═══════════════════════════════════════ -->
+<section class="page active" id="p0">
+  <div class="hero-wrap">
+    <div class="top-tag reveal">— A Celebration of You —</div>
+
+    <h1 class="hero-title reveal delay1">
+      Happy<br><em>Birthday</em>
+    </h1>
+
+    <div class="rose-line reveal delay2">
+      <span>🌹</span><span class="line"></span><span>🌹</span>
+    </div>
+
+    <p class="hero-name reveal delay3">My Love, My Heart, My Universe</p>
+
+    <p class="hero-quote reveal delay4" id="dynamicQuote">
+      Loading something beautiful for you…
+    </p>
+
+    <div class="btn-row reveal delay5">
+      <button class="btn-gold" onclick="goTo(1)">Read My Letter 💌</button>
+      <button class="btn-outline" onclick="goTo(2)">Our Memories 📸</button>
+      <button class="btn-rose" onclick="goTo(3)">Cut the Cake 🎂</button>
+    </div>
+
+    <div class="hearts-row reveal delay6">
+      <span class="hb">💖</span>
+      <span class="hb" style="animation-delay:.15s">💕</span>
+      <span class="hb" style="animation-delay:.3s">💗</span>
+      <span class="hb" style="animation-delay:.45s">💖</span>
+      <span class="hb" style="animation-delay:.6s">💕</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ -->
+<!--          PAGE 1 — LETTER              -->
+<!-- ═══════════════════════════════════════ -->
+<section class="page" id="p1">
+  <div class="letter-scene">
+
+    <div class="letter-envelope" id="envelope">
+      <div class="env-flap"></div>
+      <div class="env-body">
+        <div class="env-seal" onclick="openLetter()">
+          <span>💌</span>
+          <p>Tap to open</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="letter-card hidden" id="letterCard">
+      <div class="letter-corner tl">✦</div>
+      <div class="letter-corner tr">✦</div>
+      <div class="letter-corner bl">✦</div>
+      <div class="letter-corner br">✦</div>
+
+      <p class="letter-label">A letter from my heart</p>
+      <h2 class="letter-heading">To My Beautiful Love</h2>
+      <div class="letter-divider">💛 ── 🌹 ── 💛</div>
+
+      <div class="letter-body">
+        <p>My dearest,</p>
+        <p>No poem, no song, no language has ever been invented that is powerful enough to describe what you mean to me. But today, on your birthday, I want to try — because you deserve to hear it every single day.</p>
+        <p>You are the warmth in my mornings, the laughter in my evenings, and the peace in my nights. You are everything I never knew I needed, and everything I cannot imagine living without.</p>
+        <p>Thank you for your love that never wavers. Thank you for your smile that fixes everything. Thank you for simply being <em>you</em> — the most extraordinary person I have ever known.</p>
+        <p>Today is your day. May it be as radiant as you are. May the universe spoil you rotten. You deserve nothing less than every beautiful thing in this world.</p>
+        <p>Currently I am not able to celebrate your birthday properly due to the money but I will I am sorry ,meri chujii. Happy Birthday, My Love. 🌹</p>
+      </div>
+
+      <div class="letter-sign">Forever & Always Yours ❤️</div>
+
+      <button class="btn-gold" style="margin-top:28px;" onclick="goTo(2)">See Our Memories →</button>
+    </div>
+  </div>
+  <button class="back-btn" onclick="goTo(0)">← Back</button>
+</section>
+
+<!-- ═══════════════════════════════════════ -->
+<!--        PAGE 2 — MEMORIES              -->
+<!-- ═══════════════════════════════════════ -->
+<section class="page" id="p2">
+  <div class="mem-wrap">
+    <h2 class="mem-title">Our Beautiful Story 💕</h2>
+    <p class="mem-sub">Every moment with you is a memory I treasure forever</p>
+
+    <div class="timeline" id="timeline">
+      <div class="tl-item left appear">
+        <div class="tl-card">
+          <img src="images/photo1.jpg" class="tl-photo" alt="The Day We Met">
+          <div class="tl-icon">💫</div>
+          <h3>The Day We Met</h3>
+          <p>The universe smiled the day our paths crossed. Everything changed in that one beautiful moment.</p>
+        </div>
+      </div>
+      <div class="tl-item right appear">
+        <div class="tl-card">
+          <img src="images/photo2.jpg" class="tl-photo" alt="Our First Date">
+          <div class="tl-icon">🌹</div>
+          <h3>Our First Date</h3>
+          <p>Nervous, excited, and completely enchanted by you. I knew right then — you were the one.</p>
+        </div>
+      </div>
+      <div class="tl-item left appear">
+        <div class="tl-card">
+          <img src="images/photo3.jpg" class="tl-photo" alt="The Promise">
+          <div class="tl-icon">💍</div>
+          <h3>The Promise</h3>
+          <p>When I asked you to be mine forever, my heart had never felt so full. You said yes. Best day of my life.</p>
+        </div>
+      </div>
+      <div class="tl-item right appear">
+        <div class="tl-card">
+          <img src="images/photo4.jpg" class="tl-photo" alt="Our Love">
+          <div class="tl-icon">🏠</div>
+          <h3>Our Love</h3>
+          <p>Building a life with you — filled with laughter, warmth, and love — is the greatest adventure.</p>
+        </div>
+      </div>
+      <div class="tl-item left appear">
+        <div class="tl-card">
+          <img src="images/photo5.jpg" class="tl-photo" alt="Your Birthday my cutiee!">
+          <div class="tl-icon">🎂</div>
+          <h3>Today — Your Birthday my cutiee!</h3>
+          <p>Another year of you. Another year of us. I fall more in love with you every single day.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dynamic wish from API -->
+    <div class="wish-ticker" id="wishTicker">
+      <span id="currentWish">Loading a wish for you…</span>
+    </div>
+
+    <button class="btn-rose" style="margin-top:20px;" onclick="goTo(3)">Cut the Cake 🎂</button>
+  </div>
+  <button class="back-btn" onclick="goTo(1)">← Back</button>
+</section>
+
+<!-- ═══════════════════════════════════════ -->
+<!--          PAGE 3 — CAKE               -->
+<!-- ═══════════════════════════════════════ -->
+<section class="page" id="p3">
+  <div class="cake-wrap">
+    <h2 class="cake-title">Make Your Wish! ✨</h2>
+    <p class="cake-sub" id="cakeSub">Three candles — three wishes — blow them all!</p>
+
+    <!-- 3D-styled SVG Cake -->
+    <div class="cake-stage">
+      <svg id="cakeSVG" viewBox="0 0 380 420" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="plateGrad" cx="50%" cy="50%">
+            <stop offset="0%" stop-color="#5a2a38"/>
+            <stop offset="100%" stop-color="#2a0c18"/>
+          </radialGradient>
+          <linearGradient id="tier1Grad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#f07aab"/>
+            <stop offset="100%" stop-color="#c93d6e"/>
+          </linearGradient>
+          <linearGradient id="tier2Grad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#f9a7c7"/>
+            <stop offset="100%" stop-color="#e07099"/>
+          </linearGradient>
+          <linearGradient id="tier3Grad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#fdc8db"/>
+            <stop offset="100%" stop-color="#f07aab"/>
+          </linearGradient>
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="4" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <filter id="softglow">
+            <feGaussianBlur stdDeviation="8" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+
+        <!-- Shadow -->
+        <ellipse cx="190" cy="400" rx="155" ry="14" fill="#1a0a12" opacity="0.5"/>
+
+        <!-- TIER 1 — Bottom -->
+        <rect x="25" y="285" width="330" height="95" rx="14" fill="url(#tier1Grad)"/>
+        <ellipse cx="190" cy="285" rx="165" ry="18" fill="#f9a7c7"/>
+        <ellipse cx="190" cy="380" rx="165" ry="18" fill="#a02050"/>
+        <!-- Deco dots tier1 -->
+        <circle cx="70"  cy="330" r="9" fill="white" opacity="0.22"/>
+        <circle cx="115" cy="318" r="6" fill="#ffd700" opacity="0.5"/>
+        <circle cx="160" cy="328" r="8" fill="white" opacity="0.22"/>
+        <circle cx="220" cy="319" r="6" fill="#ffd700" opacity="0.5"/>
+        <circle cx="265" cy="330" r="8" fill="white" opacity="0.22"/>
+        <circle cx="310" cy="319" r="6" fill="#ffd700" opacity="0.5"/>
+        <!-- Ribbon tier1 -->
+        <rect x="25" y="325" width="330" height="16" rx="5" fill="rgba(255,255,255,0.12)"/>
+
+        <!-- TIER 2 — Middle -->
+        <rect x="75" y="195" width="230" height="95" rx="14" fill="url(#tier2Grad)"/>
+        <ellipse cx="190" cy="195" rx="115" ry="16" fill="#fdc8db"/>
+        <ellipse cx="190" cy="290" rx="115" ry="16" fill="#c06080"/>
+        <!-- Flowers tier2 -->
+        <text x="110" y="255" font-size="32" text-anchor="middle">🌸</text>
+        <text x="190" y="260" font-size="36" text-anchor="middle">💖</text>
+        <text x="270" y="255" font-size="32" text-anchor="middle">🌸</text>
+        <!-- Ribbon tier2 -->
+        <rect x="75" y="233" width="230" height="14" rx="5" fill="rgba(255,255,255,0.15)"/>
+
+        <!-- TIER 3 — Top -->
+        <rect x="120" y="118" width="140" height="82" rx="14" fill="url(#tier3Grad)"/>
+        <ellipse cx="190" cy="118" rx="70" ry="13" fill="white" opacity="0.8"/>
+        <ellipse cx="190" cy="200" rx="70" ry="13" fill="#d06085"/>
+        <!-- Frosting drips -->
+        <path d="M138 118 Q143 100 148 118" fill="white" opacity="0.7"/>
+        <path d="M158 118 Q165 96 171 118" fill="white" opacity="0.7"/>
+        <path d="M178 118 Q185 98 191 118" fill="white" opacity="0.7"/>
+        <path d="M198 118 Q205 100 211 118" fill="white" opacity="0.7"/>
+        <path d="M218 118 Q225 102 231 118" fill="white" opacity="0.7"/>
+        <!-- Text on cake -->
+        <text x="190" y="157" font-size="12" fill="white" text-anchor="middle" font-family="serif" font-style="italic" font-weight="bold" opacity="0.9">Happy Birthday</text>
+        <text x="190" y="175" font-size="10" fill="#ffd700" text-anchor="middle" font-family="serif" font-style="italic">My Love ❤️</text>
+
+        <!-- ══ CANDLE 1 ══ -->
+        <g id="candle1Group">
+          <rect x="138" y="72" width="16" height="50" rx="8" fill="#ffd700"/>
+          <rect x="138" y="72" width="16" height="12" rx="6" fill="#ffe88a"/>
+          <!-- Stripes -->
+          <rect x="138" y="86" width="16" height="5" rx="0" fill="rgba(255,255,255,0.25)"/>
+          <rect x="138" y="96" width="16" height="5" rx="0" fill="rgba(255,255,255,0.25)"/>
+          <rect x="138" y="106" width="16" height="5" rx="0" fill="rgba(255,255,255,0.25)"/>
+          <!-- Flame -->
+          <g id="flame1" class="flame" filter="url(#glow)">
+            <ellipse cx="146" cy="60" rx="7" ry="13" fill="rgba(255,200,0,0.95)"/>
+            <ellipse cx="146" cy="64" rx="4.5" ry="8" fill="rgba(255,120,0,0.9)"/>
+            <ellipse cx="146" cy="67" rx="2.5" ry="4" fill="rgba(255,240,180,0.95)"/>
+          </g>
+        </g>
+
+        <!-- ══ CANDLE 2 (CENTER, TALLER) ══ -->
+        <g id="candle2Group">
+          <rect x="182" y="60" width="16" height="62" rx="8" fill="#ff6b9d"/>
+          <rect x="182" y="60" width="16" height="12" rx="6" fill="#ff9dc0"/>
+          <rect x="182" y="76" width="16" height="5" rx="0" fill="rgba(255,255,255,0.25)"/>
+          <rect x="182" y="88" width="16" height="5" rx="0" fill="rgba(255,255,255,0.25)"/>
+          <rect x="182" y="100" width="16" height="5" rx="0" fill="rgba(255,255,255,0.25)"/>
+          <g id="flame2" class="flame" filter="url(#glow)" style="animation-delay:.06s">
+            <ellipse cx="190" cy="47" rx="8" ry="15" fill="rgba(255,200,0,0.95)"/>
+            <ellipse cx="190" cy="52" rx="5" ry="9" fill="rgba(255,120,0,0.9)"/>
+            <ellipse cx="190" cy="56" rx="3" ry="5" fill="rgba(255,240,180,0.95)"/>
+          </g>
+        </g>
+
+        <!-- ══ CANDLE 3 ══ -->
+        <g id="candle3Group">
+          <rect x="226" y="72" width="16" height="50" rx="8" fill="#a78bfa"/>
+          <rect x="226" y="72" width="16" height="12" rx="6" fill="#c4b5fd"/>
+          <rect x="226" y="86" width="16" height="5" rx="0" fill="rgba(255,255,255,0.25)"/>
+          <rect x="226" y="96" width="16" height="5" rx="0" fill="rgba(255,255,255,0.25)"/>
+          <rect x="226" y="106" width="16" height="5" rx="0" fill="rgba(255,255,255,0.25)"/>
+          <g id="flame3" class="flame" filter="url(#glow)" style="animation-delay:.12s">
+            <ellipse cx="234" cy="60" rx="7" ry="13" fill="rgba(255,200,0,0.95)"/>
+            <ellipse cx="234" cy="64" rx="4.5" ry="8" fill="rgba(255,120,0,0.9)"/>
+            <ellipse cx="234" cy="67" rx="2.5" ry="4" fill="rgba(255,240,180,0.95)"/>
+          </g>
+        </g>
+
+        <!-- Stars around cake -->
+        <text x="40"  y="180" font-size="18" opacity="0.6" class="sparkle">✨</text>
+        <text x="320" y="200" font-size="18" opacity="0.6" class="sparkle" style="animation-delay:.4s">✨</text>
+        <text x="55"  y="270" font-size="14" opacity="0.5" class="sparkle" style="animation-delay:.2s">⭐</text>
+        <text x="310" y="290" font-size="14" opacity="0.5" class="sparkle" style="animation-delay:.6s">⭐</text>
+      </svg>
+
+      <!-- Smoke particles container -->
+      <div id="smokeContainer"></div>
+    </div>
+
+    <!-- Hint -->
+    <p class="blow-hint" id="blowHint">🕯️ Candles are lit — close your eyes and make a wish!</p>
+
+    <!-- Actions -->
+    <div class="cake-btns">
+      <button class="btn-gold" id="blowBtn" onclick="blowAllCandles()">💨 Blow All Candles</button>
+      <button class="btn-rose" id="cutBtn" onclick="cutTheCake()">🔪 Cut the Cake</button>
+      <button class="btn-outline" onclick="resetCake()">🔄 Reset</button>
+    </div>
+  </div>
+
+  <!-- WISH MODAL -->
+  <div class="modal-bg hidden" id="modal">
+    <div class="modal-box">
+      <div class="modal-emoji" id="modalEmoji">🎉</div>
+      <h2 class="modal-title" id="modalTitle">Wish Granted!</h2>
+      <p class="modal-msg" id="modalMsg">May all your dreams come true!</p>
+      <button class="btn-gold" onclick="closeModal()" style="margin-top:24px;">Thank You, My Love! 💕</button>
+    </div>
+  </div>
+
+  <button class="back-btn" onclick="goTo(2)">← Back</button>
+</section>
+
+<script src="js/bg.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
